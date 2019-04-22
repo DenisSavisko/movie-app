@@ -1,6 +1,6 @@
 Using API https://developers.themoviedb.org
 
-Demo: https://denissavisko.github.io/movie-app/
+Demo: http://movie-app.tk/
 
 
 
