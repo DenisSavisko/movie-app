@@ -1,0 +1,12 @@
+@import "custom";
+@import "~bootstrap/scss/bootstrap";
+
+footer.footer{
+  background-color: #fffaad;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.item{
+  // border: 1px black solid;
+}
