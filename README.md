@@ -1,3 +1,9 @@
+Using API https://developers.themoviedb.org
+
+Demo: https://denissavisko.github.io/movie-app/
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
