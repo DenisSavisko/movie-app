@@ -1,26 +1,21 @@
 import React from 'react';
 import { Container, Button, Row, Col }  from 'react-bootstrap'
 
-
 export default ({page, totalPages, handlePageChange})=>
 <Container className='text-center'>
   <Row>
     <Col>
-
-      { 
-        page > 1 && 
+      { page > 1 &&  // show prev if count page more than 1
         <Button variant="outline-primary" value='prev' onClick={handlePageChange}>
           {'<-Prev'}
         </Button>
-
       }
-      {page && 
+      {page &&  // show numberPage if page received
       <Button variant="outline-primary" disabled>
           {page}
         </Button>
       }
-      { 
-        page < totalPages && 
+      { page < totalPages &&  // show next if count page less than total pages
         <Button variant="outline-primary" value='next' onClick={handlePageChange}>
           {'Next->'}
         </Button>
