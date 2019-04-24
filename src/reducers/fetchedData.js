@@ -1,0 +1,13 @@
+export function json(state = {}, action) {
+  let newState = {...state};
+  switch (action.type) {
+    case 'FETCH_TO_STATE':
+      newState = action.payload;
+      return newState;
+    case 'RESET_RESULTS_IN_STORE':
+      newState = {};
+      return newState;
+    default:
+      return state;
+  }
+}

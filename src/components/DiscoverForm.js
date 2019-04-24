@@ -1,9 +1,7 @@
 import React from 'react';
-import MoviesListContainer from './MoviesListContainer';
 import { Form, Col, Container }  from 'react-bootstrap'
 
-
-export default (props)=><div>
+export default ()=>
   <Container>
     <Form className='mt-4'>
       <Form.Row>
@@ -35,10 +33,3 @@ export default (props)=><div>
       </Form.Row>
     </Form>
   </Container>
-
-  <MoviesListContainer 
-    {...props} 
-    compTitle='Discover New Movies & TV Shows Movies TV Shows'
-    compDescQuant={60}
-  />
-</div>

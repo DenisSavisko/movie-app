@@ -1,51 +1,52 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
-import { fetchData, handlePageChange } from '../actions/state';
-import ListPageView from './ListPageView';
-import PeopleView from './PeopleView';
-import Paginator from './Paginator';
-import TvView from './TvView';
-import MoviesView from './MoviesView';
-import DiscoverView from './DiscoverView';
-import PersonView from './PersonView';
-import MovieView from './MovieView';
 import { Route, Switch } from "react-router-dom";
-
-
-import historyParamsToObj from '../services/historyParamsToObj';
-import { store } from './App';
 import history from '../history';
-
+import { handlePageChange, handleHistoryOnChange } from '../actions/state';
+import { fetchData } from '../actions/fetch';
+import LandingView from './LandingView';
+import PeopleList from './PeopleList';
+import Person from './Person';
+import MoviesList from './MoviesList';
+import Movie from './Movie';
+import DiscoverForm from './DiscoverForm';
+import Paginator from './Paginator';
 
 const Main = (props)=>{
-
-  useEffect(()=>{  // location to redux; dispatch events onChange history
+  useEffect(() => {  // location to redux
     history.listen(({pathname, search}) => {
-      store.dispatch({type:'URL_PARAMS_SET', payload:historyParamsToObj(search)}); //set urlParams in store to params from link;
-      store.dispatch({type:'HISTORY_UPDATE', payload:pathname}); //set history link to link in redux;
-      store.dispatch({type:'RESET_RESULTS_IN_STORE'}); //set results to 0;
-      store.dispatch({type:'LOADING_COUNT'}); // count ++ to fetch data with params when history changed;
+      props.handleHistoryOnChange(pathname, search); //dispatch events onChange history
     });
-  }
-  ,[]);
+  },[]);
   
   useEffect(()=>{
-    props.fetchData(); // fetch initial
-  }
-  ,[props.loadingCount]);
+    props.fetchData(); // fetch initial & onChange loadingCount(onchange history)
+  },[props.loadingCount]);
+
+  let movieLists = [ // arr of identical pages
+    {path:'/tv/(popular|top_rated|on_the_air|airing_today)/', title: 'Popular TV Shows'},
+    {path:'/movie/(popular|top_rated|upcoming|now_playing)/', title: 'Popular movies'},
+    {path:'/discover/*',customComponents: 
+      <div>
+        <DiscoverForm />
+        <MoviesList {...props} compTitle='Discover New Movies & TV Shows Movies TV Shows'/>
+      </div>
+    },
+  ];
 
   return (
     <div>
       <Switch>
-        <Route exact path='/trending/*' render={()=><ListPageView {...props} />} />
-        <Route exact path='/' render={()=><ListPageView {...props} />} />
-        <Route exact path='/person/popular' render={()=><PeopleView {...props}/>} />
-        <Route exact path='/person/*' render={()=><PersonView {...props}/>} />
-        <Route exact path='/tv/(popular|top_rated|on_the_air|airing_today)/' render={()=><TvView {...props}/>} />
-        <Route exact path='/tv/*/' render={()=><MovieView {...props} />} />
-        <Route exact path='/movie/(popular|top_rated|upcoming|now_playing)/' render={()=><MoviesView {...props}/>} />
-        <Route exact path='/movie/*/' render={()=><MovieView {...props} />} />
-        <Route exact path='/discover/*' render={()=><DiscoverView {...props}/>} />
+        {movieLists.map((elem, i) => // map movieList arr to Route's
+          <Route key={<i></i>} exact path={elem.path} render = {()=>
+              elem.customComponents? elem.customComponents
+              : <MoviesList {...props} compTitle={elem.title}/>
+          }/>
+        )}
+        <Route exact path={['/','/trending/*']} render={()=><LandingView {...props} />} />
+        <Route exact path='/person/popular' render={()=><PeopleList {...props}/>} />
+        <Route exact path='/person/*' render={()=><Person {...props}/>} />
+        <Route exact path='/(movie|tv)/*/' render={()=><Movie {...props} />} />
       </Switch>
       <Paginator {...props}/>
     </div>
@@ -54,10 +55,10 @@ const Main = (props)=>{
 
 const mapStateToProps = (state) => {
   return {
-    results: state.state.json.results,
-    json: state.state.json,
-    page: state.state.json.page,
-    totalPages: state.state.json.total_pages,
+    results: state.json.results,
+    json: state.json,
+    page: state.json.page,
+    totalPages: state.json.total_pages,
     urlPathNow: state.state.urlPathNow,
     loadingCount: state.state.loadingCount,
   };
@@ -67,6 +68,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchData: (path) => dispatch(fetchData(path)),
     handlePageChange: (e) => dispatch(handlePageChange(e)),
+    handleHistoryOnChange: (path, search) => dispatch(handleHistoryOnChange(path, search)),
   };
 };
 

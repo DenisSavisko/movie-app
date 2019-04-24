@@ -7,7 +7,7 @@ import logo from '../img/logo.svg'
 export default (props) =>
   <div>
   <Navbar bg="light" expand="lg">
-    <Link to='/trending/all/day' className='nav nav-link nav-brand'><Image href='/trending/all/day' src={logo} style={{maxWidth:250}}/></Link>
+    <Link to='/' className='nav nav-link nav-brand'><Image href='/trending/all/day' src={logo} style={{maxWidth:250}}/></Link>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
       <Nav className="mr-auto">

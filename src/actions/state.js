@@ -1,14 +1,8 @@
-import { config } from '../config';
 import history from '../history';
 import setParamsToLink from '../services/setParamsToLink';
+import historyParamsToObj from '../services/historyParamsToObj';
 
-
-export function jsonToState(data) {
-  return {
-    type: "FETCH_TO_STATE",
-    payload: data,
-  };
-};
+import {fetchData} from './fetch';
 
 export function pageToState(page) {
   return {
@@ -17,49 +11,18 @@ export function pageToState(page) {
   };
 };
 
-export function urlParamsChange(obj) {
-  return {
-    type: "URL_PARAMS_CHANGE",
-    payload: obj,
-  };
-};
-
-export function fetchData() {
-  return (dispatch, useState) => {
-
-    let path = (useState().state.urlPathNow === '/')?
-      '/trending/all/day'                //default path if path = '/' 
-      : useState().state.urlPathNow;
-
-    let linkApi = config.urlLink(path); // compose Api link with config
-    let paramsObj = useState().state.urlParams; // params in store
-    let url = setParamsToLink(linkApi, paramsObj); // add params to link
-
-    fetch(url)
-      .then(response=>{
-        if(response.status===200){
-          return response.json()
-        }
-      })
-      .then(json=> {
-        dispatch(jsonToState(json));
-      })
-      .catch(function(error) {
-        console.log('There has been a problem with your fetch operation: ' + error.message);
-      });
-  };
-};
-
-// export const handleParamsChange = e =>{
-
-//   // define which button was clicked
-//   // change all params or only one
-//   // history push link with params
-// }
+export function handleHistoryOnChange(pathname, search){
+  return (dispatch) => {
+    dispatch({type:'URL_PARAMS_SET', payload:historyParamsToObj(search)}); //set urlParams in store to params from link;
+    dispatch({type:'HISTORY_UPDATE', payload:pathname}); // location to redux
+    dispatch({type:'RESET_RESULTS_IN_STORE'}); //set results in store to 0;
+    dispatch({type:'LOADING_COUNT'}); // count ++ to fetch data with params when history changed;
+  }
+}
 
 export const handlePageChange = e =>{
   return(dispatch, useState)=>{
-    let page = useState().state.json.page;
+    let page = useState().json.page;
     switch(e.target.value){
       case 'prev':
         dispatch(pageToState(page-1));
@@ -76,6 +39,23 @@ export const handlePageChange = e =>{
     let url = setParamsToLink(('http://www.example.com'+path), paramsObj); // add params to link
     url = url.pathname+ url.search; // use only path and search
     history.push(url);
+
     dispatch(fetchData());
   }
 };
+
+
+// export function urlParamsChange(obj) {
+//   return {
+//     type: "URL_PARAMS_CHANGE",
+//     payload: obj,
+//   };
+// };
+
+
+// export const handleParamsChange = e =>{
+
+//   // define which button was clicked
+//   // change all params or only one
+//   // history push link with params
+// }
