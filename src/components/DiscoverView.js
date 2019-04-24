@@ -1,31 +1,44 @@
-import React,{ useEffect } from 'react';
-import { Container, Row, Col, Card }  from 'react-bootstrap'
-import { config } from '../config';
+import React from 'react';
+import MoviesListContainer from './MoviesListContainer';
+import { Form, Col, Container }  from 'react-bootstrap'
 
-const CardMy = ({poster_path, name, overview}) =>
-  <Card >
-    <Card.Img variant="top" src={config.imgLink+poster_path}/>
-    <Card.Body>
-      <Card.Title>{name}</Card.Title>
-      <Card.Text>
-        {overview.substr(0, 60)}...
-      </Card.Text>
-    </Card.Body>
-  </Card>
 
-export default ({results})=>
-  <Container className='main mt-3'>
-    <Row>
-      <Col>
-        <h1 className='main m-4'>Discover New Movies & TV Shows Movies TV Shows</h1>
-      </Col>
-    </Row>
-    <Row className='justify-content-center'>
-      { !results ? 'LOADING...' :
-        results.map((item,i)=>
-        <Col className='col-md-3 mb-3' key={i}>
-          <CardMy {...item}/>
-        </Col>)
-      }
-    </Row>
+export default (props)=><div>
+  <Container>
+    <Form className='mt-4'>
+      <Form.Row>
+        <Form.Group as={Col} controlId="formGridState">
+          <Form.Label>Year</Form.Label>
+          <Form.Control as="select">
+            <option>Choose...</option>
+            <option>...</option>
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridState">
+          <Form.Label>Sort By</Form.Label>
+          <Form.Control as="select">
+            <option>Choose...</option>
+            <option>...</option>
+          </Form.Control>
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridZip">
+          <Form.Label>Genres</Form.Label>
+          <Form.Control placeholder='Filter by genres...'/>
+        </Form.Group>
+
+        <Form.Group as={Col} controlId="formGridZip">
+          <Form.Label>Keywords</Form.Label>
+          <Form.Control placeholder='Filter by keywords...'/>
+        </Form.Group>
+      </Form.Row>
+    </Form>
   </Container>
+
+  <MoviesListContainer 
+    {...props} 
+    compTitle='Discover New Movies & TV Shows Movies TV Shows'
+    compDescQuant={60}
+  />
+</div>

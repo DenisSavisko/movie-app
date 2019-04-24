@@ -7,26 +7,27 @@ import Paginator from './Paginator';
 import TvView from './TvView';
 import MoviesView from './MoviesView';
 import DiscoverView from './DiscoverView';
+import PersonView from './PersonView';
+import MovieView from './MovieView';
 import { Route, Switch } from "react-router-dom";
 
-const ListPage = (props)=>{
 
-  // useEffect(()=>{
-  //   history.listen(({pathname, ...location}) => { // location to redux;
-  //     // if(store.getState().state.urlPathNow !== pathname){
-        
-  //       //set urlParams in store to params from link;
-  //       store.dispatch({type:'URL_PARAMS_SET', payload:historyParamsToObj(location.search)});
-  //       //set history link to link in redux;
-  //       store.dispatch({type:'HISTORY_UPDATE', payload:pathname});
-  //       //set results to 0;
-  //       store.dispatch({type:'RESET_RESULTS_IN_STORE'}); // remove state.json only when path changed
-  //       //fetch data with params;
-  //       store.dispatch({type:'LOADING_COUNT'}); // remove state.json only when path changed
-  //     // }
-  //   });
-  // }
-  // ,[]);
+import historyParamsToObj from '../services/historyParamsToObj';
+import { store } from './App';
+import history from '../history';
+
+
+const Main = (props)=>{
+
+  useEffect(()=>{  // location to redux; dispatch events onChange history
+    history.listen(({pathname, search}) => {
+      store.dispatch({type:'URL_PARAMS_SET', payload:historyParamsToObj(search)}); //set urlParams in store to params from link;
+      store.dispatch({type:'HISTORY_UPDATE', payload:pathname}); //set history link to link in redux;
+      store.dispatch({type:'RESET_RESULTS_IN_STORE'}); //set results to 0;
+      store.dispatch({type:'LOADING_COUNT'}); // count ++ to fetch data with params when history changed;
+    });
+  }
+  ,[]);
   
   useEffect(()=>{
     props.fetchData(); // fetch initial
@@ -38,10 +39,12 @@ const ListPage = (props)=>{
       <Switch>
         <Route exact path='/trending/*' render={()=><ListPageView {...props} />} />
         <Route exact path='/' render={()=><ListPageView {...props} />} />
-
         <Route exact path='/person/popular' render={()=><PeopleView {...props}/>} />
-        <Route exact path='/tv/popular' render={()=><TvView {...props}/>} />
-        <Route exact path='/movie/popular' render={()=><MoviesView {...props}/>} />
+        <Route exact path='/person/*' render={()=><PersonView {...props}/>} />
+        <Route exact path='/tv/(popular|top_rated|on_the_air|airing_today)/' render={()=><TvView {...props}/>} />
+        <Route exact path='/tv/*/' render={()=><MovieView {...props} />} />
+        <Route exact path='/movie/(popular|top_rated|upcoming|now_playing)/' render={()=><MoviesView {...props}/>} />
+        <Route exact path='/movie/*/' render={()=><MovieView {...props} />} />
         <Route exact path='/discover/*' render={()=><DiscoverView {...props}/>} />
       </Switch>
       <Paginator {...props}/>
@@ -67,4 +70,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ListPage);
+export default connect(mapStateToProps, mapDispatchToProps)(Main);
