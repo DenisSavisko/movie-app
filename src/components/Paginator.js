@@ -6,17 +6,17 @@ export default ({page, totalPages, handlePageChange})=>
   <Row>
     <Col>
       { page > 1 &&  // show prev if count page more than 1
-        <Button variant="outline-success" value='prev' onClick={handlePageChange}>
+        <Button variant="outline-secondary" value='prev' onClick={handlePageChange}>
           {'<-Prev'}
         </Button>
       }
       {page &&  // show numberPage if page received
-      <Button variant="outline-success" disabled>
+      <Button variant="outline-secondary" disabled>
           {page}
         </Button>
       }
       { page < totalPages &&  // show next if count page less than total pages
-        <Button variant="outline-success" value='next' onClick={handlePageChange}>
+        <Button variant="outline-secondary" value='next' onClick={handlePageChange}>
           {'Next->'}
         </Button>
       }

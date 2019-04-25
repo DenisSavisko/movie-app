@@ -5,9 +5,8 @@ import history from '../history';
 import { handlePageChange, handleHistoryOnChange } from '../actions/state';
 import { fetchData } from '../actions/fetch';
 import LandingView from './LandingView';
-import PeopleList from './PeopleList';
 import Person from './Person';
-import MoviesList from './MoviesList';
+import List from './List';
 import Movie from './Movie';
 import SearchPage from './SearchPage';
 import DiscoverForm from './DiscoverForm';
@@ -25,14 +24,18 @@ const Main = (props)=>{
   },[props.loadingCount]);
 
   let movieLists = [ // arr of identical pages
-    {path:'/tv/(popular|top_rated|on_the_air|airing_today)/', title: 'Popular TV Shows'},
-    {path:'/movie/(popular|top_rated|upcoming|now_playing)/', title: 'Popular movies'},
-    {path:'/discover/*',customComponents: 
+    {path:'/tv/(popular|top_rated|on_the_air|airing_today)/', title: 'TV Shows'},
+    {path:'/movie/(popular|top_rated|upcoming|now_playing)/', title: 'Movies'},
+    {path:'/discover/*',customComp: 
       <div>
         <DiscoverForm />
-        <MoviesList {...props} compTitle='Discover New Movies & TV Shows Movies TV Shows'/>
+        <List {...props} compTitle='Discover New Movies & TV Shows Movies TV Shows'/>
       </div>
     },
+    {path:'/person/popular', customComp: <List {...props} compTitle={'Popular People'} columns={{md:3}}/>},
+    {path:'/person/popular', customComp: <List {...props} compTitle={'Popular People'} columns={{md:3}}/>},
+    {path:'/person/popular', customComp: <List {...props} compTitle={'Popular People'} columns={{md:3}}/>},
+    {path:'/person/popular', customComp: <List {...props} compTitle={'Popular People'} columns={{md:3}}/>},
   ];
 
   return (
@@ -40,13 +43,12 @@ const Main = (props)=>{
       <Switch>
         {movieLists.map((elem, i) => // map movieList arr to Route's
           <Route key={<i></i>} exact path={elem.path} render = {()=>
-              elem.customComponents? elem.customComponents
-              : <MoviesList {...props} compTitle={elem.title}/>
+              elem.customComp? elem.customComp
+              : <List {...props} compTitle={elem.title}/>
           }/>
         )}
         <Route exact path={['/']} component={LandingView} />
-        <Route exact path='/person/popular' render={()=><PeopleList {...props}/>} />
-        <Route exact path='/person/*' render={()=><Person {...props}/>} />
+        <Route exact path='/person/*' render={()=><Person {...props} />} />
         <Route exact path='/(movie|tv)/*/' render={()=><Movie {...props} />} />
         <Route exact path='/search/multi' render={()=><SearchPage {...props} />} />
       </Switch>

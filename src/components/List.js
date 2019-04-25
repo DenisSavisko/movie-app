@@ -6,7 +6,7 @@ import dateToString from '../services/dateToString'
 import CircularProgressBar from './CircularProgressBar';
 
 
-const CardMy = ({id, vote_average, first_air_date, release_date, poster_path, title, original_title, name, overview, descriptionQuantity}) =>{
+const CardMovies = ({id, vote_average, first_air_date, release_date, poster_path, title, original_title, name, overview, descriptionQuantity}) =>{
   let idOfUser = id;
   let tvOrMovie = first_air_date? 'tv': 'movie';
   const handleClick = (e) => {
@@ -59,11 +59,36 @@ const CardMy = ({id, vote_average, first_air_date, release_date, poster_path, ti
   </Card>
 }
 
-export default ({results, compTitle='Unnamed component', compDescQuant=215})=>
-  <Container className='mt-3'>
+const CardPersons = ({profile_path, name, known_for, id, descriptionQuantity=45}) =>{
+  let idOfUser = id;
+  const handleClick = (e) => {
+    history.push(`/person/${idOfUser}`)
+  }
+
+  return <Card >
+    <Card.Img 
+      variant="top" 
+      src={profile_path? 
+        config.imgLink+profile_path
+        : 'http://cdn.onlinewebfonts.com/svg/img_210318.png'}
+      className='mouse-pointer'
+      onClick={handleClick}
+    />
+    <Card.Body>
+      <Card.Title className='mouse-pointer' onClick={handleClick}>{name}</Card.Title>
+      <Card.Text>
+        {known_for && known_for.map(item=>item.original_title || item.original_name).join(', ').substr(0, descriptionQuantity)}...
+      </Card.Text>
+    </Card.Body>
+  </Card>
+}
+
+export default ({results, compTitle='Unnamed component', compDescQuant=215, columns={lg:6}})=>{
+  console.log(results);
+  return <Container className='mt-3'>
     <Row>
       <Col>
-        <h1>{compTitle}</h1>
+        <h1 className='m-4'>{compTitle}</h1>
       </Col>
     </Row>
     <Row className='justify-content-center'>
@@ -73,12 +98,13 @@ export default ({results, compTitle='Unnamed component', compDescQuant=215})=>
         </Spinner> 
       :
         results.map((item,i)=>
-        <Col className='mb-3' sm={12} lg={6} key={i}>
-          <CardMy 
-            {...item} 
-            descriptionQuantity={compDescQuant}
-          />
+        <Col className='mb-3' sm={12} {...columns} key={i}>
+          { item.profile_path ? <CardPersons {...item} descriptionQuantity={compDescQuant} />
+              : 
+            <CardMovies {...item} descriptionQuantity={compDescQuant} />
+          }
         </Col>)
       }
     </Row>
   </Container>
+}

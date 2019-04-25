@@ -81,13 +81,3 @@ export default ()=>{
     </Form>
   </Container>
 }
-
-{/*
-
-
-
-
-
-
-
-    1900-2019 years . map*/}

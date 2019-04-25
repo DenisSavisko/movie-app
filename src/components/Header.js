@@ -13,10 +13,6 @@ export default (props) =>
         <Nav className="mr-auto">
           <div className='nav-main-link'>
             <Link to='/discover/movie?year=2018' className='nav nav-link'>DISCOVER</Link>
-            <div className='nav-aditional-link'>
-              <Link to='/discover/movie?year=2018' className='nav nav-link'>Movies</Link>
-              <Link to='/discover/tv?first_air_date_year=2018' className='nav nav-link'>TV shows</Link>
-            </div>
           </div>
           <div className='nav-main-link'>
             <Link to='/movie/popular?page=1' className='nav nav-link'>MOVIES</Link>
