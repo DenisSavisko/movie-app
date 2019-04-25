@@ -80,7 +80,7 @@ export default ({json})=>{
             {!open? '▽':'△'} Full bio
           </Button>
 
-          <Nav
+          {/*<Nav
             activeKey="/home"
             onSelect={selectedKey => alert(`selected ${selectedKey}`)}
             className='my-5'
@@ -108,7 +108,7 @@ export default ({json})=>{
           <h3>Known for</h3>
           fetch movies...
           <h3>acting...</h3>
-          fetch credits...
+          fetch credits...*/}
         </Col>
       </Row>
       <Row className='justify-content-center'>

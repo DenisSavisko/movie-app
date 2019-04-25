@@ -7,13 +7,23 @@
 .footer {
   display: flex;
   justify-content: center;
-  align-items: center;  height:5vh;
+  align-items: center;  
+  height:5vh;
   background-color: #fffaad;
+  img{
+    display: flex-inline;
+    align-items: center;
+    max-height: 4vh;
+    margin-left: 5px;
+  }
   a{
-    text-decoration: none;
+    text-decoration: underline;
     color:#fff;
     &:hover{
-      color:#bab;
+      color:#0D2535;
+    }
+    img{
+
     }
   }
 }
