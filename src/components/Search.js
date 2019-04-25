@@ -38,6 +38,7 @@ const Search = ({id, first_air_date, json, fetchAditional, resultsJsonReset, loa
     if(!bool) return setState('');
     fetchAditional(trendingSearchJson);
   }
+
   const handleChange = (e) => {
     let value = e.target.value;
     setState(value);
@@ -49,6 +50,7 @@ const Search = ({id, first_air_date, json, fetchAditional, resultsJsonReset, loa
     };
     fetchAditional(mutliSearchJson);
   }
+  
   const handleSubmit = (e) => {
     history.push(`/search/multi?query=${inputValue}`);
     e.preventDefault();

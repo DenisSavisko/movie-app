@@ -49,7 +49,6 @@ const Loading = () =>
 
 export default ({json})=>{
   let [open, setState] = useState(false);
-  console.log(json);
   if(!json.name) return <Loading />;
   return (
     <Container className='main my-5'>
