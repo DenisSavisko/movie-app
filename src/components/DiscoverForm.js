@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { Form, Col, Container }  from 'react-bootstrap'
 
-export default ()=>
-  <Container>
+export default ()=>{
+  let [form, setForm] = useState({});
+
+  const handleChange = () => {
+    
+  };
+
+  return <Container>
     <Form className='mt-4'>
       <Form.Row>
         <Form.Group as={Col} controlId="formGridState">
@@ -33,3 +39,4 @@ export default ()=>
       </Form.Row>
     </Form>
   </Container>
+}

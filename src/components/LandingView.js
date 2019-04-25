@@ -1,9 +1,11 @@
 import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom'
 import { Container, Row, Col, Card, Spinner, CardGroup }  from 'react-bootstrap'
 import { config } from '../config';
 import { fetchData } from '../actions/fetch';
 import history from '../history';
+
 
 
 const CardMy = ({id, vote_average, first_air_date, release_date, backdrop_path, poster_path, title, original_title, name, overview, descriptionQuantity}) =>{
@@ -68,7 +70,7 @@ const Landing = ({json, fetchAditional, resultsJsonReset, loadingCount})=>{
 		fetchAditional(aditionalJsonPersons);
 	},[loadingCount]);
 
-	if(!json || !json.movieJson || !json.tvJson){ // loading while fetching
+	if(!json || !json.movieJson || !json.tvJson || !json.personJson){ // loading while fetching
 		return <Row  className='justify-content-center m-5'>
 			<Spinner animation="border" role="status">
         <span className="sr-only">Loading...</span>
@@ -79,7 +81,7 @@ const Landing = ({json, fetchAditional, resultsJsonReset, loadingCount})=>{
 	let resultsPerson = json.personJson.results;
 	// console.log(resultsMovie);
 	// console.log(resultsTv);
-	console.log(resultsPerson);
+	// console.log(resultsPerson);
 
 
 	return <Container className='main mt-3'>
@@ -87,7 +89,7 @@ const Landing = ({json, fetchAditional, resultsJsonReset, loadingCount})=>{
 			<Col md={6} className='mt-3'>
 				<Row>
 					<Col sm={12}>
-						<h2>On TV</h2>
+            <Link to='/tv/on_the_air' className='nav nav-link h2 text-black'>On TV</Link>
 					</Col>
 					{resultsTv.map((item,i)=>
 						i>2? '':
@@ -103,7 +105,7 @@ const Landing = ({json, fetchAditional, resultsJsonReset, loadingCount})=>{
 			<Col md={6}  className='mt-3'>
 				<Row >
 					<Col sm={12}>
-						<h2>In Theaters</h2>
+						<Link to='/movie/upcoming' className='nav nav-link h2 text-black'>In Theaters</Link>
 					</Col>
 					{resultsMovie.map((item,i)=>
 						i>2? '':
@@ -120,7 +122,7 @@ const Landing = ({json, fetchAditional, resultsJsonReset, loadingCount})=>{
 
 		<Row className='my-5'>
 			<Col sm={12}>
-				<h2>Most popular persons</h2>
+        <Link to='/person/popular' className='nav nav-link h2 text-black'>Most popular persons</Link>
 			</Col>
 			<CardGroup>
 			{resultsPerson.map((item,i)=>

@@ -27,6 +27,9 @@
     }
   }
 }
+.nav.nav-link{
+  color:#202428;
+}
 
 .nav-aditional-link{
   position:absolute;
@@ -64,6 +67,16 @@
   font-size: 0.8em;
   font-weight: bold;
   fill: #fff;
+}
+
+.search-results{
+  position: absolute;
+  left:0;
+  z-index: 999;
+  background-color: white;
+}
+.search-list:hover{
+  background-color: #EFEFEF;
 }
 
 @media only screen and (max-width: 991px) {

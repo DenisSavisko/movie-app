@@ -44,6 +44,22 @@ export const handlePageChange = e =>{
   }
 };
 
+export const handleParamsChange = (objParams) =>{
+  return(dispatch, useState)=>{
+
+  // define which button was clicked
+  // change all params or only one
+  // history push link with params
+      let path = useState().state.urlPathNow;
+    let paramsObj = useState().state.urlParams;
+    let url = setParamsToLink(('http://www.example.com'+path), paramsObj); // add params to link
+    url = url.pathname+ url.search; // use only path and search
+    history.push(url);
+
+    dispatch(fetchData());
+  }
+}
+
 
 // export function urlParamsChange(obj) {
 //   return {
@@ -53,9 +69,3 @@ export const handlePageChange = e =>{
 // };
 
 
-// export const handleParamsChange = e =>{
-
-//   // define which button was clicked
-//   // change all params or only one
-//   // history push link with params
-// }
