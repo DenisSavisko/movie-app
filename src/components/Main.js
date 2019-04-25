@@ -43,7 +43,7 @@ const Main = (props)=>{
               : <MoviesList {...props} compTitle={elem.title}/>
           }/>
         )}
-        <Route exact path={['/','/trending/*']} render={()=><LandingView {...props} />} />
+        <Route exact path={['/']} component={LandingView} />
         <Route exact path='/person/popular' render={()=><PeopleList {...props}/>} />
         <Route exact path='/person/*' render={()=><Person {...props}/>} />
         <Route exact path='/(movie|tv)/*/' render={()=><Movie {...props} />} />
@@ -66,7 +66,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchData: (path) => dispatch(fetchData(path)),
+    fetchData: () => dispatch(fetchData()),
     handlePageChange: (e) => dispatch(handlePageChange(e)),
     handleHistoryOnChange: (path, search) => dispatch(handleHistoryOnChange(path, search)),
   };

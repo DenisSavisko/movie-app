@@ -1,35 +1,152 @@
-import React from 'react';
-import { Container, Row, Col, Card, Spinner }  from 'react-bootstrap'
+import React, {useEffect} from 'react';
+import { connect } from 'react-redux';
+import { Container, Row, Col, Card, Spinner, CardGroup }  from 'react-bootstrap'
 import { config } from '../config';
+import { fetchData } from '../actions/fetch';
+import history from '../history';
 
-const CardMy = ({poster_path, name, overview}) =>
-  <Card >
-    <Card.Img variant="top" src={config.imgLink+poster_path}/>
+
+const CardMy = ({id, vote_average, first_air_date, release_date, backdrop_path, poster_path, title, original_title, name, overview, descriptionQuantity}) =>{
+  let idOfUser = id;
+  let tvOrMovie = first_air_date? 'tv': 'movie';
+  const handleClick = (e) => {
+    history.push(`/${tvOrMovie}/${idOfUser}`)
+  }
+
+  let nameOfMovie = original_title || title || name;
+
+  return <Card className="text-white border-0 mouse-pointer" onClick={handleClick}>
+		  <Card.Img src={config.imgLink+backdrop_path} alt="Card image" className='rounded-0'/>
+		  <Card.ImgOverlay className='d-flex'>
+		    <Card.Title className='align-self-end' style={{textShadow: '1px 1px 0 #000', fontFamily: 'sans-serif'}}>{nameOfMovie}</Card.Title>
+		  </Card.ImgOverlay>
+		</Card>
+}
+
+const CardPeople = ({profile_path, name, known_for, id}) =>{
+  let idOfUser = id;
+  const handleClick = (e) => {
+    history.push(`/person/${idOfUser}`)
+  }
+
+  return <Card >
+    <Card.Img 
+      variant="top" 
+      src={profile_path? 
+        config.imgLink+profile_path
+        : 'http://cdn.onlinewebfonts.com/svg/img_210318.png'}
+      className='mouse-pointer'
+      onClick={handleClick}
+    />
     <Card.Body>
-      <Card.Title>{name}</Card.Title>
+      <Card.Title className='mouse-pointer' onClick={handleClick}>{name}</Card.Title>
       <Card.Text>
-        {overview.substr(0, 60)}...
+        {known_for && known_for.map(item=>item.original_title || item.original_name).join(', ').substr(0, 40)}...
       </Card.Text>
     </Card.Body>
   </Card>
+}
 
-export default ({results})=>
-  <Container className='main mt-3'>
-    <Row>
-      <Col>
-        <h1 className='main m-4'>Discover New Movies & TV Shows Movies TV Shows</h1>
-      </Col>
-    </Row>
-    <Row className='justify-content-center'>
-      { !results ?
-        <Spinner animation="border" role="status">
-          <span className="sr-only">Loading...</span>
-        </Spinner> 
-        :
-        results.map((item,i)=>
-        <Col className='col-md-3 mb-3' key={i}>
-          <CardMy {...item}/>
+const Landing = ({json, fetchAditional, resultsJsonReset, loadingCount})=>{
+
+	useEffect(()=>{
+		let aditionalJsonMovie = {
+			path:'/movie/upcoming',
+			nameJson:'movieJson',
+		}
+		let aditionalJsonTv = {
+			path:'/tv/on_the_air',
+			nameJson:'tvJson',
+		}
+		let aditionalJsonPersons = {
+			path:'/person/popular',
+			nameJson:'personJson',
+		}
+		// resultsJsonReset();
+		fetchAditional(aditionalJsonMovie);
+		fetchAditional(aditionalJsonTv);
+		fetchAditional(aditionalJsonPersons);
+	},[loadingCount]);
+
+	if(!json || !json.movieJson || !json.tvJson){ // loading while fetching
+		return <Row  className='justify-content-center m-5'>
+			<Spinner animation="border" role="status">
+        <span className="sr-only">Loading...</span>
+      </Spinner></Row>
+	}
+	let resultsMovie = json.movieJson.results;
+	let resultsTv = json.tvJson.results;
+	let resultsPerson = json.personJson.results;
+	// console.log(resultsMovie);
+	// console.log(resultsTv);
+	console.log(resultsPerson);
+
+
+	return <Container className='main mt-3'>
+		<Row className='my-3'>
+			<Col md={6} className='mt-3'>
+				<Row>
+					<Col sm={12}>
+						<h2>On TV</h2>
+					</Col>
+					{resultsTv.map((item,i)=>
+						i>2? '':
+		        <Col className='m-0 p-0' sm={i===0? 12 : 6} key={i}>
+		          <CardMy 
+		            {...item} 
+		          />
+		        </Col>
+		        )
+					}
+				</Row>
+			</Col>
+			<Col md={6}  className='mt-3'>
+				<Row >
+					<Col sm={12}>
+						<h2>In Theaters</h2>
+					</Col>
+					{resultsMovie.map((item,i)=>
+						i>2? '':
+		        <Col className='m-0 p-0' sm={i===0? 12 : 6} key={i}>
+		          <CardMy 
+		            {...item} 
+		          />
+		        </Col>
+		        )
+					}
+				</Row>
+			</Col>
+		</Row>
+
+		<Row className='my-5'>
+			<Col sm={12}>
+				<h2>Most popular persons</h2>
+			</Col>
+			<CardGroup>
+			{resultsPerson.map((item,i)=>
+				i>11? '':
+        <Col className='col-lg-2 col-md-3 col-sm-4 col-xs-6 m-0 my-3 p-0' key={i}>
+          <CardPeople {...item} />
         </Col>)
-      }
-    </Row>
-  </Container>
+			}
+			</CardGroup>
+		</Row>
+
+	</Container>
+}
+
+const mapStateToProps = (state) => {
+  return {
+    json: state.json,
+    loadingCount: state.state.loadingCount,
+  };
+};
+
+const mapDispatchToProps = (dispatch) =>{
+	return {
+		fetchAditional: params => dispatch(fetchData(params)),
+		resultsJsonReset: () => dispatch({type:'RESET_RESULTS_IN_STORE'}),
+	};
+};
+// export default Landing;
+export default connect(mapStateToProps, mapDispatchToProps)(Landing);

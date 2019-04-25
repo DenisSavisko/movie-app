@@ -12,8 +12,10 @@ export const store = configureStore(); // You can also pass in an initialState h
 export default () =>
   <Provider store={store}>
     <Router history={history}>
-      <Header />
-      <Main />
+      <div className='content'>
+        <Header />
+        <Main />
+      </div>
       <Footer />   
     </Router>
   </Provider>

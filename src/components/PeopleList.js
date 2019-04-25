@@ -22,7 +22,7 @@ const CardMy = ({profile_path, name, known_for, id}) =>{
     <Card.Body>
       <Card.Title className='mouse-pointer' onClick={handleClick}>{name}</Card.Title>
       <Card.Text>
-        {known_for && known_for.map(item=>item.original_title || item.original_name).join(', ').substr(0, 40)}...
+        {known_for && known_for.map(item=>item.original_title || item.original_name).join(', ').substr(0, 45)}...
       </Card.Text>
     </Card.Body>
   </Card>

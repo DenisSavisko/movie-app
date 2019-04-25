@@ -4,5 +4,5 @@ import { json } from './fetchedData';
 
 export default combineReducers({
     state,
-    json
+    json,
 });

@@ -1,11 +1,21 @@
 @import "custom";
 @import "~bootstrap/scss/bootstrap";
 
-footer.footer{
-  background-color: #fffaad;
+.content {
+  min-height: 100vh;
+}
+.footer {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: center;  height:5vh;
+  background-color: #fffaad;
+  a{
+    text-decoration: none;
+    color:#fff;
+    &:hover{
+      color:#bab;
+    }
+  }
 }
 
 .nav-aditional-link{
@@ -27,7 +37,7 @@ footer.footer{
 
 .circle-background,
 .circle-progress {
-  fill: none;
+  fill: #071B22;
 }
 
 .circle-background {
@@ -41,7 +51,7 @@ footer.footer{
 }
 
 .circle-text {
-  font-size: 1.2em;
+  font-size: 0.8em;
   font-weight: bold;
   fill: #fff;
 }

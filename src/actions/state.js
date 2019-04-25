@@ -18,7 +18,7 @@ export function handleHistoryOnChange(pathname, search){
     dispatch({type:'RESET_RESULTS_IN_STORE'}); //set results in store to 0;
     dispatch({type:'LOADING_COUNT'}); // count ++ to fetch data with params when history changed;
   }
-}
+};
 
 export const handlePageChange = e =>{
   return(dispatch, useState)=>{

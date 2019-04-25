@@ -41,7 +41,7 @@ const CardMy = ({profile_path, birthday, homepage, place_of_birth, known_for_dep
 
 const Loading = () =>
   <Container className='text-center'>
-    <Spinner animation="border" role="status">
+    <Spinner animation="border" className='m-5' role="status">
       <span className="sr-only">Loading...</span>
     </Spinner> 
   </Container>

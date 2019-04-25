@@ -7,6 +7,9 @@ export function json(state = {}, action) {
     case 'RESET_RESULTS_IN_STORE':
       newState = {};
       return newState;
+    case 'FETCH_TO_STATE_ADITIONAL':
+      newState = {...newState, [action.nameJson]:action.aditionalJson};
+      return newState;
     default:
       return state;
   }
