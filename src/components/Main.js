@@ -50,7 +50,7 @@ const Main = (props)=>{
         <Route exact path={['/']} component={LandingView} />
         <Route exact path='/person/*' render={()=><Person {...props} />} />
         <Route exact path='/(movie|tv)/*/' render={()=><Movie {...props} />} />
-        <Route exact path='/search/multi' render={()=><SearchPage {...props} />} />
+        <Route exact path='/search/*' render={()=><SearchPage {...props} />} />
       </Switch>
       <Paginator {...props}/>
     </div>

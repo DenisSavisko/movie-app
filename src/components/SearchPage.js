@@ -1,43 +1,36 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { Container, Row, Col, Tab, ListGroup }  from 'react-bootstrap'
-// import { config } from '../config';
-// import history from '../history';
-// import dateToString from '../services/dateToString'
+import { Link } from 'react-router-dom'
+import history from '../history';
 import List from './List';
 
 export default (props) =>{
-  let [category, setCat] = useState('Movies');
+  let category = history.location.pathname.slice(8);
+  category = category[0].toUpperCase()+category.slice(1); //capitalise
 
   return <Container>
     <Row>
-      <Col md={4}>
+      <Col md={3}>
         <Tab.Container id="list-group-tabs-example" defaultActiveKey="#link1">
           <Row>
-            <Col sm={4}>
+            <Col sm={12} className='mt-5'>
               <ListGroup>
-                <ListGroup.Item action href="#link1">
-                  Link 1
+                <ListGroup.Item className='hoverable'>
+                  <Link to={`/search/movie${history.location.search}`} className='nav nav-link'>Movies</Link>
                 </ListGroup.Item>
-                <ListGroup.Item action href="#link2">
-                  Link 2
+                <ListGroup.Item className='hoverable'>
+                  <Link to={`/search/tv${history.location.search}`} className='nav nav-link'>TV shows</Link>
+                </ListGroup.Item>
+                <ListGroup.Item className='hoverable'>
+                  <Link to={`/search/person${history.location.search}`} className='nav nav-link'>People</Link>
                 </ListGroup.Item>
               </ListGroup>
             </Col>
-            <Col sm={8}>
-              <Tab.Content>
-                <Tab.Pane eventKey="#link1">
-                  
-                </Tab.Pane>
-                <Tab.Pane eventKey="#link2">
-                  
-                </Tab.Pane>
-              </Tab.Content>
-            </Col>
           </Row>
-        </Tab.Container>;
+        </Tab.Container>
       </Col>
-      <Col md={8}>
-        <List {...props} compTitle={`Search → ${category}`} columns={12} />
+      <Col md={9}>
+        <List {...props} compTitle={`Search by ${category}`} columns={12} />
       </Col>
     </Row>
   </Container>

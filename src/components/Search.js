@@ -13,7 +13,7 @@ const SearchList = ({id, first_air_date, original_title, title, name, media_type
     history.push(`/${tvOrMovieOrPerson}/${idOfUser}`)
   };
   
-  return <Row className='border-top mouse-pointer search-list' onMouseDown={(e)=>handleClick(e)}>
+  return <Row className='border-top mouse-pointer hoverable' onMouseDown={(e)=>handleClick(e)}>
     <Container >
       <Col md='12' >
         {original_title || title || name}
@@ -52,7 +52,7 @@ const Search = ({id, first_air_date, json, fetchAditional, resultsJsonReset, loa
   }
   
   const handleSubmit = (e) => {
-    history.push(`/search/multi?query=${inputValue}`);
+    history.push(`/search/${searchTrending[0].media_type}?query=${inputValue}`);
     e.preventDefault();
   }
 

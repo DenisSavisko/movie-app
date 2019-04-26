@@ -84,7 +84,6 @@ const CardPersons = ({profile_path, name, known_for, id, descriptionQuantity=45}
 }
 
 export default ({results, compTitle='Unnamed component', compDescQuant=215, columns={lg:6}})=>{
-  console.log(results);
   return <Container className='mt-3'>
     <Row>
       <Col>
