@@ -30,7 +30,7 @@ export default (props) =>{
         </Tab.Container>
       </Col>
       <Col md={9}>
-        <List {...props} compTitle={`Search by ${category}`} columns={12} />
+        <List {...props} compTitle={`Search by ${category}`} columns={{lg:6}} />
       </Col>
     </Row>
   </Container>

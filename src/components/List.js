@@ -84,6 +84,7 @@ const CardPersons = ({profile_path, name, known_for, id, descriptionQuantity=45}
 }
 
 export default ({results, compTitle='Unnamed component', compDescQuant=215, columns={lg:6}})=>{
+  console.log(results);
   return <Container className='mt-3'>
     <Row>
       <Col>
@@ -98,7 +99,7 @@ export default ({results, compTitle='Unnamed component', compDescQuant=215, colu
       :
         results.map((item,i)=>
         <Col className='mb-3' sm={12} {...columns} key={i}>
-          { item.profile_path ? <CardPersons {...item} descriptionQuantity={compDescQuant} />
+          { item.profile_path || item.profile_path===null ? <CardPersons {...item} descriptionQuantity={compDescQuant} />
               : 
             <CardMovies {...item} descriptionQuantity={compDescQuant} />
           }
