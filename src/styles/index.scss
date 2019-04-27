@@ -1,5 +1,5 @@
-@import "custom";
-@import "~bootstrap/scss/bootstrap";
+@import 'custom';
+@import '~bootstrap/scss/bootstrap';
 
 .content {
   min-height: 100vh;
@@ -7,50 +7,49 @@
 .footer {
   display: flex;
   justify-content: center;
-  align-items: center;  
-  height:5vh;
+  align-items: center;
+  height: 5vh;
   background-color: #505050;
-  img{
+  img {
     display: flex-inline;
     align-items: center;
     max-height: 4vh;
     margin-left: 5px;
   }
-  a{
+  a {
     text-decoration: underline;
-    color:#fff;
-    &:hover{
-      color:#0D2535;
+    color: #fff;
+    &:hover {
+      color: #0d2535;
     }
-    img{
-
+    img {
     }
   }
 }
-.nav.nav-link{
-  color:#202428;
+.nav.nav-link {
+  color: #202428;
 }
 
-.nav-aditional-link{
-  position:absolute;
+.nav-aditional-link {
+  position: absolute;
   visibility: hidden;
-  & *{
+  & * {
     font-size: 0.85em;
-    color:#B7B7B8;
+    color: #b7b7b8;
     display: inline-block;
   }
 }
-.nav-main-link:hover .nav-aditional-link{
+.nav-main-link:hover .nav-aditional-link {
   visibility: visible;
 }
 
-.mouse-pointer{
+.mouse-pointer {
   cursor: pointer;
 }
 
 .circle-background,
 .circle-progress {
-  fill: #071B22;
+  fill: #071b22;
 }
 
 .circle-background {
@@ -58,7 +57,7 @@
 }
 
 .circle-progress {
-  stroke: #23D07A;
+  stroke: #23d07a;
   stroke-linecap: round;
   stroke-linejoin: round;
 }
@@ -69,27 +68,27 @@
   fill: #fff;
 }
 
-.search-results{
+.search-results {
   position: absolute;
-  left:0;
+  left: 0;
   z-index: 999;
   background-color: white;
 }
-.hoverable:hover{
-  background-color: #EFEFEF;
+.hoverable:hover {
+  background-color: #efefef;
 }
 
 @media only screen and (max-width: 991px) {
-  .nav-aditional-link{
-    position:absolute;
+  .nav-aditional-link {
+    position: absolute;
     visibility: none;
     margin-left: 20px;
-    & *{
+    & * {
       margin-right: 10px;
     }
   }
-  .nav-main-link:hover .nav-aditional-link{
-    position:relative;
+  .nav-main-link:hover .nav-aditional-link {
+    position: relative;
     visibility: visible;
   }
 }

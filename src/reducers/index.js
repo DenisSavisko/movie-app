@@ -3,6 +3,6 @@ import { state } from './state';
 import { json } from './fetchedData';
 
 export default combineReducers({
-    state,
-    json,
+  state,
+  json,
 });

@@ -1,8 +1,10 @@
-export default function historyParamsToObj(string){
-  let searchParams = new URLSearchParams(string);
-  let arrParams = [];
-  let objParams = {};
-  for(var pair of searchParams.entries()) { arrParams.push(pair); }
-  arrParams.forEach( pair => objParams[pair[0]] = pair[1] );
+export default function historyParamsToObj(string) {
+  const searchParams = new URLSearchParams(string);
+  const arrParams = [];
+  const objParams = {};
+  for (const pair of searchParams.entries()) {
+    arrParams.push(pair);
+  }
+  arrParams.forEach(pair => (objParams[pair[0]] = pair[1]));
   return objParams;
 }
