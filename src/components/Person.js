@@ -86,10 +86,7 @@ export default ({ json }) => {
           <CardMy {...json} />
         </Col>
         <Col>
-          <h1>
-            {json.name}
-            (links)
-          </h1>
+          <h1>{json.name}</h1>
           <h3>Biography</h3>
           {json.biography
             .split('\n')
