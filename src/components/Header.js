@@ -4,7 +4,7 @@ import { Navbar, Nav, Image } from 'react-bootstrap';
 import logo from '../img/logo.svg';
 import Search from './Search';
 
-export default props => (
+export default () => (
   <div>
     <Navbar bg="light" expand="lg">
       <Link to="/" className="nav nav-link nav-brand">

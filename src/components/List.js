@@ -19,7 +19,7 @@ const CardMovies = ({
 }) => {
   const idOfUser = id;
   const tvOrMovie = first_air_date ? 'tv' : 'movie';
-  const handleClick = e => {
+  const handleClick = () => {
     history.push(`/${tvOrMovie}/${idOfUser}`);
   };
 
@@ -74,7 +74,7 @@ const CardPersons = ({
   descriptionQuantity = 45,
 }) => {
   const idOfUser = id;
-  const handleClick = e => {
+  const handleClick = () => {
     history.push(`/person/${idOfUser}`);
   };
 
@@ -107,13 +107,12 @@ const CardPersons = ({
   );
 };
 
-export default ({
+export default function List({
   results,
   compTitle = 'Unnamed component',
   compDescQuant = 215,
   columns = { lg: 6 },
-}) => {
-  console.log(results);
+}) {
   return (
     <Container className="mt-3">
       <Row>
@@ -140,4 +139,4 @@ export default ({
       </Row>
     </Container>
   );
-};
+}

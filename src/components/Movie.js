@@ -12,11 +12,6 @@ const Loading = () => (
 );
 
 export default ({ json }) => {
-  const handleClick = e => {
-    // console.log(e);
-  };
-  // console.log(json);
-
   const date = json.release_date || json.first_air_date;
   const name = json.original_title || json.name;
 
@@ -42,8 +37,7 @@ export default ({ json }) => {
                       ? config.imgLink + json.poster_path
                       : 'http://cdn.onlinewebfonts.com/svg/img_210318.png'
                   }
-                  className="mouse-pointer img-fluid"
-                  onClick={handleClick}
+                  className="img-fluid"
                 />
               </Card>
             </Col>

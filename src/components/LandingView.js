@@ -8,29 +8,24 @@ import history from '../history';
 
 const CardMy = ({
   id,
-  vote_average,
-  first_air_date,
-  release_date,
-  backdrop_path,
-  poster_path,
+  first_air_date: firstAirDate,
+  backdrop_path: backdropPath,
   title,
-  original_title,
+  original_title: originalTitle,
   name,
-  overview,
-  descriptionQuantity,
 }) => {
   const idOfUser = id;
-  const tvOrMovie = first_air_date ? 'tv' : 'movie';
-  const handleClick = e => {
+  const tvOrMovie = firstAirDate ? 'tv' : 'movie';
+  const handleClick = () => {
     history.push(`/${tvOrMovie}/${idOfUser}`);
   };
 
-  const nameOfMovie = original_title || title || name;
+  const nameOfMovie = originalTitle || title || name;
 
   return (
     <Card className="text-white border-0 mouse-pointer" onClick={handleClick}>
       <Card.Img
-        src={config.imgLink + backdrop_path}
+        src={config.imgLink + backdropPath}
         alt="Card image"
         className="rounded-0"
       />
@@ -46,9 +41,14 @@ const CardMy = ({
   );
 };
 
-const CardPeople = ({ profile_path, name, known_for, id }) => {
+const CardPeople = ({
+  profile_path: profilePath,
+  name,
+  known_for: knownFor,
+  id,
+}) => {
   const idOfUser = id;
-  const handleClick = e => {
+  const handleClick = () => {
     history.push(`/person/${idOfUser}`);
   };
 
@@ -57,8 +57,8 @@ const CardPeople = ({ profile_path, name, known_for, id }) => {
       <Card.Img
         variant="top"
         src={
-          profile_path
-            ? config.imgLink + profile_path
+          profilePath
+            ? config.imgLink + profilePath
             : 'http://cdn.onlinewebfonts.com/svg/img_210318.png'
         }
         className="mouse-pointer"
@@ -69,8 +69,8 @@ const CardPeople = ({ profile_path, name, known_for, id }) => {
           {name}
         </Card.Title>
         <Card.Text>
-          {known_for &&
-            known_for
+          {knownFor &&
+            knownFor
               .map(item => item.original_title || item.original_name)
               .join(', ')
               .substr(0, 40)}
@@ -81,7 +81,7 @@ const CardPeople = ({ profile_path, name, known_for, id }) => {
   );
 };
 
-const Landing = ({ json, fetchAditional, resultsJsonReset, loadingCount }) => {
+const Landing = ({ json, fetchAditional, loadingCount }) => {
   useEffect(() => {
     const aditionalJsonMovie = {
       path: '/movie/upcoming',
@@ -95,7 +95,6 @@ const Landing = ({ json, fetchAditional, resultsJsonReset, loadingCount }) => {
       path: '/person/popular',
       nameJson: 'personJson',
     };
-    // resultsJsonReset();
     fetchAditional(aditionalJsonMovie);
     fetchAditional(aditionalJsonTv);
     fetchAditional(aditionalJsonPersons);
@@ -114,9 +113,6 @@ const Landing = ({ json, fetchAditional, resultsJsonReset, loadingCount }) => {
   const resultsMovie = json.movieJson.results;
   const resultsTv = json.tvJson.results;
   const resultsPerson = json.personJson.results;
-  // console.log(resultsMovie);
-  // console.log(resultsTv);
-  // console.log(resultsPerson);
 
   return (
     <Container className="main mt-3">
@@ -194,7 +190,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     fetchAditional: params => dispatch(fetchData(params)),
-    resultsJsonReset: () => dispatch({ type: 'RESET_RESULTS_IN_STORE' }),
   };
 };
 // export default Landing;

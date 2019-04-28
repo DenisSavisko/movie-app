@@ -23,6 +23,7 @@ export default () => {
   }, [form]);
 
   const yearsArr = [];
+  // eslint-disable-next-line no-plusplus
   for (let i = 2019; i > 1900; i--) {
     yearsArr.push(i);
   }

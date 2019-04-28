@@ -15,7 +15,7 @@ const SearchList = ({
   const idOfUser = id;
   let tvOrMovieOrPerson = first_air_date ? 'tv' : 'movie';
   if (media_type) tvOrMovieOrPerson = media_type;
-  const handleClick = e => {
+  const handleClick = () => {
     history.push(`/${tvOrMovieOrPerson}/${idOfUser}`);
   };
 
@@ -31,16 +31,7 @@ const SearchList = ({
   );
 };
 
-const Search = ({
-  id,
-  first_air_date,
-  json,
-  fetchAditional,
-  resultsJsonReset,
-  loadingCount,
-  setUrlParams,
-  media_type,
-}) => {
+const Search = ({ json, fetchAditional }) => {
   const [focused, setFocused] = useState(false);
   const [inputValue, setState] = useState('');
 
@@ -59,7 +50,7 @@ const Search = ({
   };
 
   const handleChange = e => {
-    const value = e.target.value;
+    const { value } = e.target;
     setState(value);
     if (value === '') return fetchAditional(trendingSearchJson);
     const mutliSearchJson = {
@@ -67,7 +58,7 @@ const Search = ({
       nameJson: 'searchJsonTrend',
       paramsObj: { query: value },
     };
-    fetchAditional(mutliSearchJson);
+    return fetchAditional(mutliSearchJson);
   };
 
   const handleSubmit = e => {

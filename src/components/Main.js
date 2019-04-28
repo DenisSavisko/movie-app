@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Switch } from 'react-router-dom';
 import history from '../history';
@@ -12,17 +13,17 @@ import SearchPage from './SearchPage';
 import DiscoverForm from './DiscoverForm';
 import Paginator from './Paginator';
 
-const Main = props => {
+const Main = ({ loadingCount, fetchDataJson, historyOnChange, ...props }) => {
   useEffect(() => {
     // location to redux
     history.listen(({ pathname, search }) => {
-      props.handleHistoryOnChange(pathname, search); // dispatch events onChange history
+      historyOnChange(pathname, search); // dispatch events onChange history
     });
   }, []);
 
   useEffect(() => {
-    props.fetchData(); // fetch initial & onChange loadingCount(onchange history)
-  }, [props.loadingCount]);
+    fetchDataJson(); // fetch initial & onChange loadingCount(onchange history)
+  }, [loadingCount]);
 
   const movieLists = [
     // arr of identical pages
@@ -110,6 +111,12 @@ const Main = props => {
   );
 };
 
+Main.propTypes = {
+  loadingCount: PropTypes.number.isRequired,
+  historyOnChange: PropTypes.func.isRequired,
+  fetchDataJson: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => {
   return {
     results: state.json.results,
@@ -123,9 +130,9 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchData: () => dispatch(fetchData()),
+    fetchDataJson: () => dispatch(fetchData()),
     handlePageChange: e => dispatch(handlePageChange(e)),
-    handleHistoryOnChange: (path, search) =>
+    historyOnChange: (path, search) =>
       dispatch(handleHistoryOnChange(path, search)),
   };
 };

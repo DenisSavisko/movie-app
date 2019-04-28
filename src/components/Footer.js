@@ -2,7 +2,7 @@ import React from 'react';
 
 export default () => (
   <footer className="footer text-light">
-    <div className="">
+    <span>
       Denis Savisko,{' '}
       <a href="https://github.com/DenisSavisko/movie-app" target="blank">
         GitHub
@@ -11,6 +11,6 @@ export default () => (
           alt="github logo"
         />
       </a>
-    </div>
+    </span>
   </footer>
 );

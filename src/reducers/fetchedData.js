@@ -1,4 +1,4 @@
-export function json(state = {}, action) {
+export default function json(state = {}, action) {
   let newState = { ...state };
   switch (action.type) {
     case 'FETCH_TO_STATE':

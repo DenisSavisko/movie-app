@@ -22,7 +22,7 @@ export function handleHistoryOnChange(pathname, search) {
 
 export const handlePageChange = e => {
   return (dispatch, useState) => {
-    const page = useState().json.page;
+    const { page } = useState().json;
     switch (e.target.value) {
       case 'prev':
         dispatch(pageToState(page - 1));
@@ -43,25 +43,3 @@ export const handlePageChange = e => {
     dispatch(fetchData());
   };
 };
-
-export const handleParamsChange = objParams => {
-  return (dispatch, useState) => {
-    // define which button was clicked
-    // change all params or only one
-    // history push link with params
-    const path = useState().state.urlPathNow;
-    const paramsObj = useState().state.urlParams;
-    let url = setParamsToLink(`http://www.example.com${path}`, paramsObj); // add params to link
-    url = url.pathname + url.search; // use only path and search
-    history.push(url);
-
-    dispatch(fetchData());
-  };
-};
-
-// export function urlParamsChange(obj) {
-//   return {
-//     type: "URL_PARAMS_CHANGE",
-//     payload: obj,
-//   };
-// };

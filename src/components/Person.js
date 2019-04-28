@@ -22,7 +22,7 @@ const CardMy = ({
   id,
 }) => {
   const idOfUser = id;
-  const handleClick = e => {
+  const handleClick = () => {
     history.push(`/person/${idOfUser}`);
   };
 

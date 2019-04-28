@@ -7,7 +7,8 @@ const initialState = {
   loadingCount: 0,
 };
 
-export function state(state = initialState, action) {
+// eslint-disable-next-line no-shadow
+export default function state(state = initialState, action) {
   const newState = { ...state };
   switch (action.type) {
     case 'HISTORY_UPDATE':

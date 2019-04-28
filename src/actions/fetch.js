@@ -18,17 +18,14 @@ export function jsonToStateAditional(data, name) {
 
 export function fetchData(aditionalJSON) {
   return (dispatch, useState) => {
-    // let path = (useState().state.urlPathNow === '/')?
-    //   '/trending/all/day'                //default path if path = '/'
-    //   : useState().state.urlPathNow;
-
     let path = useState().state.urlPathNow;
     let paramsObj = useState().state.urlParams; // params in store
+    let nameJson;
 
     if (aditionalJSON) {
-      path = aditionalJSON.path;
+      path = aditionalJSON.path || '';
       paramsObj = aditionalJSON.paramsObj || {};
-      var nameJson = aditionalJSON.nameJson;
+      nameJson = aditionalJSON.nameJson || '';
     }
 
     const linkApi = config.urlLink(path); // compose Api link with config
@@ -36,17 +33,21 @@ export function fetchData(aditionalJSON) {
 
     fetch(url)
       .then(response => {
-        if (response.status === 200) {
-          return response.json();
+        if (!response.ok) {
+          throw Error(response.statusText);
         }
+        return response.json();
       })
       .then(json => {
         if (json.url === '/') return; // not update json in store, because it's 2 more gonna put aditional fetches in Landing
-        aditionalJSON
-          ? dispatch(jsonToStateAditional(json, nameJson))
-          : dispatch(jsonToState(json));
+        if (aditionalJSON) {
+          dispatch(jsonToStateAditional(json, nameJson));
+        } else {
+          dispatch(jsonToState(json));
+        }
       })
-      .catch(function(error) {
+      .catch(error => {
+        // eslint-disable-next-line no-console
         console.log(
           `There has been a problem with your fetch operation: ${error.message}`
         );
