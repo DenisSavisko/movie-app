@@ -119,36 +119,6 @@ export default ({ json }) => {
           >
             {!open ? '▽' : '△'} Full bio
           </Button>
-
-          {/* <Nav
-            activeKey="/home"
-            onSelect={selectedKey => alert(`selected ${selectedKey}`)}
-            className='my-5'
-          >
-            <Nav.Item>
-              <Nav.Link href="/home">Images</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="link-1">Changes</Nav.Link>
-            </Nav.Item>
-            <Nav.Item>
-              <Nav.Link eventKey="link-2">Share</Nav.Link>
-            </Nav.Item>
-            <NavDropdown title="Discussions" id="nav-dropdown">
-              <NavDropdown.Item eventKey="4.1">Action</NavDropdown.Item>
-              <NavDropdown.Item eventKey="4.2">Another action</NavDropdown.Item>
-              <NavDropdown.Item eventKey="4.3">
-                Something else here
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item eventKey="4.4">Separated link</NavDropdown.Item>
-            </NavDropdown>
-          </Nav>
-
-          <h3>Known for</h3>
-          fetch movies...
-          <h3>acting...</h3>
-          fetch credits... */}
         </Col>
       </Row>
       <Row className="justify-content-center" />
