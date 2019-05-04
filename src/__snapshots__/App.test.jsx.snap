@@ -1,0 +1,505 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Paginator container renders properly 1`] = `
+ShallowWrapper {
+  Symbol(enzyme.__root__): [Circular],
+  Symbol(enzyme.__unrendered__): <_default
+    handlePageChange={[Function]}
+    page={2}
+    totalPages={5}
+  />,
+  Symbol(enzyme.__renderer__): Object {
+    "batchedUpdates": [Function],
+    "checkPropTypes": [Function],
+    "getNode": [Function],
+    "render": [Function],
+    "simulateError": [Function],
+    "simulateEvent": [Function],
+    "unmount": [Function],
+  },
+  Symbol(enzyme.__node__): Object {
+    "instance": null,
+    "key": undefined,
+    "nodeType": "function",
+    "props": Object {
+      "as": "div",
+      "children": <ForwardRef(render)>
+        <ForwardRef
+          as="div"
+        >
+          <ForwardRef
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+            value="prev"
+            variant="outline-secondary"
+          >
+            &lt;-Prev
+          </ForwardRef>
+          <ForwardRef
+            active={false}
+            disabled={true}
+            type="button"
+            variant="outline-secondary"
+          >
+            2
+          </ForwardRef>
+          <ForwardRef
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+            value="next"
+            variant="outline-secondary"
+          >
+            Next-&gt;
+          </ForwardRef>
+        </ForwardRef>
+      </ForwardRef(render)>,
+      "className": "text-center my-5",
+      "fluid": false,
+    },
+    "ref": null,
+    "rendered": Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "children": <ForwardRef
+          as="div"
+        >
+          <ForwardRef
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+            value="prev"
+            variant="outline-secondary"
+          >
+            &lt;-Prev
+          </ForwardRef>
+          <ForwardRef
+            active={false}
+            disabled={true}
+            type="button"
+            variant="outline-secondary"
+          >
+            2
+          </ForwardRef>
+          <ForwardRef
+            active={false}
+            disabled={false}
+            onClick={[Function]}
+            type="button"
+            value="next"
+            variant="outline-secondary"
+          >
+            Next-&gt;
+          </ForwardRef>
+        </ForwardRef>,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "as": "div",
+          "children": Array [
+            <ForwardRef
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+              value="prev"
+              variant="outline-secondary"
+            >
+              &lt;-Prev
+            </ForwardRef>,
+            <ForwardRef
+              active={false}
+              disabled={true}
+              type="button"
+              variant="outline-secondary"
+            >
+              2
+            </ForwardRef>,
+            <ForwardRef
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+              value="next"
+              variant="outline-secondary"
+            >
+              Next-&gt;
+            </ForwardRef>,
+          ],
+        },
+        "ref": null,
+        "rendered": Array [
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "active": false,
+              "children": "<-Prev",
+              "disabled": false,
+              "onClick": [Function],
+              "type": "button",
+              "value": "prev",
+              "variant": "outline-secondary",
+            },
+            "ref": null,
+            "rendered": "<-Prev",
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "active": false,
+                "disabled": false,
+                "type": "button",
+                "variant": "primary",
+              },
+              "displayName": "Button",
+              "render": [Function],
+            },
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "active": false,
+              "children": 2,
+              "disabled": true,
+              "type": "button",
+              "variant": "outline-secondary",
+            },
+            "ref": null,
+            "rendered": 2,
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "active": false,
+                "disabled": false,
+                "type": "button",
+                "variant": "primary",
+              },
+              "displayName": "Button",
+              "render": [Function],
+            },
+          },
+          Object {
+            "instance": null,
+            "key": undefined,
+            "nodeType": "function",
+            "props": Object {
+              "active": false,
+              "children": "Next->",
+              "disabled": false,
+              "onClick": [Function],
+              "type": "button",
+              "value": "next",
+              "variant": "outline-secondary",
+            },
+            "ref": null,
+            "rendered": "Next->",
+            "type": Object {
+              "$$typeof": Symbol(react.forward_ref),
+              "defaultProps": Object {
+                "active": false,
+                "disabled": false,
+                "type": "button",
+                "variant": "primary",
+              },
+              "displayName": "Button",
+              "render": [Function],
+            },
+          },
+        ],
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": Object {
+            "as": "div",
+          },
+          "displayName": "Col",
+          "render": [Function],
+        },
+      },
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": undefined,
+        "displayName": "Bootstrap(Row)",
+        "propTypes": undefined,
+        "render": [Function],
+      },
+    },
+    "type": Object {
+      "$$typeof": Symbol(react.forward_ref),
+      "defaultProps": Object {
+        "as": "div",
+        "fluid": false,
+      },
+      "displayName": "Container",
+      "render": [Function],
+    },
+  },
+  Symbol(enzyme.__nodes__): Array [
+    Object {
+      "instance": null,
+      "key": undefined,
+      "nodeType": "function",
+      "props": Object {
+        "as": "div",
+        "children": <ForwardRef(render)>
+          <ForwardRef
+            as="div"
+          >
+            <ForwardRef
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+              value="prev"
+              variant="outline-secondary"
+            >
+              &lt;-Prev
+            </ForwardRef>
+            <ForwardRef
+              active={false}
+              disabled={true}
+              type="button"
+              variant="outline-secondary"
+            >
+              2
+            </ForwardRef>
+            <ForwardRef
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+              value="next"
+              variant="outline-secondary"
+            >
+              Next-&gt;
+            </ForwardRef>
+          </ForwardRef>
+        </ForwardRef(render)>,
+        "className": "text-center my-5",
+        "fluid": false,
+      },
+      "ref": null,
+      "rendered": Object {
+        "instance": null,
+        "key": undefined,
+        "nodeType": "function",
+        "props": Object {
+          "children": <ForwardRef
+            as="div"
+          >
+            <ForwardRef
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+              value="prev"
+              variant="outline-secondary"
+            >
+              &lt;-Prev
+            </ForwardRef>
+            <ForwardRef
+              active={false}
+              disabled={true}
+              type="button"
+              variant="outline-secondary"
+            >
+              2
+            </ForwardRef>
+            <ForwardRef
+              active={false}
+              disabled={false}
+              onClick={[Function]}
+              type="button"
+              value="next"
+              variant="outline-secondary"
+            >
+              Next-&gt;
+            </ForwardRef>
+          </ForwardRef>,
+        },
+        "ref": null,
+        "rendered": Object {
+          "instance": null,
+          "key": undefined,
+          "nodeType": "function",
+          "props": Object {
+            "as": "div",
+            "children": Array [
+              <ForwardRef
+                active={false}
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+                value="prev"
+                variant="outline-secondary"
+              >
+                &lt;-Prev
+              </ForwardRef>,
+              <ForwardRef
+                active={false}
+                disabled={true}
+                type="button"
+                variant="outline-secondary"
+              >
+                2
+              </ForwardRef>,
+              <ForwardRef
+                active={false}
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+                value="next"
+                variant="outline-secondary"
+              >
+                Next-&gt;
+              </ForwardRef>,
+            ],
+          },
+          "ref": null,
+          "rendered": Array [
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "active": false,
+                "children": "<-Prev",
+                "disabled": false,
+                "onClick": [Function],
+                "type": "button",
+                "value": "prev",
+                "variant": "outline-secondary",
+              },
+              "ref": null,
+              "rendered": "<-Prev",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "active": false,
+                  "disabled": false,
+                  "type": "button",
+                  "variant": "primary",
+                },
+                "displayName": "Button",
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "active": false,
+                "children": 2,
+                "disabled": true,
+                "type": "button",
+                "variant": "outline-secondary",
+              },
+              "ref": null,
+              "rendered": 2,
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "active": false,
+                  "disabled": false,
+                  "type": "button",
+                  "variant": "primary",
+                },
+                "displayName": "Button",
+                "render": [Function],
+              },
+            },
+            Object {
+              "instance": null,
+              "key": undefined,
+              "nodeType": "function",
+              "props": Object {
+                "active": false,
+                "children": "Next->",
+                "disabled": false,
+                "onClick": [Function],
+                "type": "button",
+                "value": "next",
+                "variant": "outline-secondary",
+              },
+              "ref": null,
+              "rendered": "Next->",
+              "type": Object {
+                "$$typeof": Symbol(react.forward_ref),
+                "defaultProps": Object {
+                  "active": false,
+                  "disabled": false,
+                  "type": "button",
+                  "variant": "primary",
+                },
+                "displayName": "Button",
+                "render": [Function],
+              },
+            },
+          ],
+          "type": Object {
+            "$$typeof": Symbol(react.forward_ref),
+            "defaultProps": Object {
+              "as": "div",
+            },
+            "displayName": "Col",
+            "render": [Function],
+          },
+        },
+        "type": Object {
+          "$$typeof": Symbol(react.forward_ref),
+          "defaultProps": undefined,
+          "displayName": "Bootstrap(Row)",
+          "propTypes": undefined,
+          "render": [Function],
+        },
+      },
+      "type": Object {
+        "$$typeof": Symbol(react.forward_ref),
+        "defaultProps": Object {
+          "as": "div",
+          "fluid": false,
+        },
+        "displayName": "Container",
+        "render": [Function],
+      },
+    },
+  ],
+  Symbol(enzyme.__options__): Object {
+    "adapter": ReactSixteenAdapter {
+      "options": Object {
+        "enableComponentDidUpdateOnSetState": true,
+        "legacyContextMode": "parent",
+        "lifecycles": Object {
+          "componentDidUpdate": Object {
+            "onSetState": true,
+          },
+          "getChildContext": Object {
+            "calledByRenderer": false,
+          },
+          "getDerivedStateFromError": true,
+          "getDerivedStateFromProps": Object {
+            "hasShouldComponentUpdateBug": false,
+          },
+          "getSnapshotBeforeUpdate": true,
+          "setState": Object {
+            "skipsComponentDidUpdateOnNullish": true,
+          },
+        },
+      },
+    },
+  },
+}
+`;
